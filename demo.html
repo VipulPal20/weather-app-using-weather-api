@@ -3,14 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>My Weather App</title>
+    <title>Interactive Weather App - Demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#">Weather App</a>
+          <a class="navbar-brand" href="#">🌤️ Interactive Weather App</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -62,12 +62,18 @@
                 <label class="btn btn-outline-primary" for="fahrenheit">°F</label>
             </div>
         </div>
+        
+        <!-- Demo badge -->
+        <div class="alert alert-info text-center" role="alert">
+            <strong>🎯 Interactive Demo Mode</strong> - Try the features: dropdown cities, search, unit conversion, table clicks, refresh button!
+        </div>
+        
         <main>
         <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
           <div class="col">
             <div class="card mb-4 rounded-3 shadow-sm">
               <div class="card-header py-3" style="background: blueviolet;">
-                <h4 class="my-0 fw-normal">Temperature</h4>
+                <h4 class="my-0 fw-normal">🌡️ Temperature</h4>
               </div>
               <div class="card-body">
                 <h1 class="card-title pricing-card-title"><span id ="temp2"></span><small class="text-body-secondary fw-light"><span>&#8451;</span></small></h1>
@@ -77,14 +83,13 @@
                   <li>Max Temperature is <span id ="max_temp"></span></li>
                   
                 </ul>
-                <!-- <button type="button" class="w-100 btn btn-lg btn-outline-primary">Sign up for free</button> -->
               </div>
             </div>
           </div>
           <div class="col">
             <div class="card mb-4 rounded-3 shadow-sm" style="height: 256px;">
               <div class="card-header py-3" style="background: blueviolet;">
-                <h4 class="my-0 fw-normal">Humidity Info</h4>
+                <h4 class="my-0 fw-normal">💧 Humidity Info</h4>
               </div>
               <div class="card-body">
                 <h1 class="card-title pricing-card-title"><span id ="humidity2"></span><small class="text-body-secondary fw-light"> %</small></h1>
@@ -92,14 +97,13 @@
                   <li>Feels Like <span id ="feels_like"></span></li>
                   <li>Humidity is <span id ="humidity"></span></li>
                 </ul>
-                <!-- <button type="button" class="w-100 btn btn-lg btn-primary">Get started</button> -->
               </div>
             </div>
           </div>
           <div class="col">
             <div class="card mb-4 rounded-3 shadow-sm border-primary">
               <div class="card-header py-3" style="background: blueviolet;">
-                <h4 class="my-0 fw-normal">Wind Info</h4>
+                <h4 class="my-0 fw-normal">💨 Wind Info</h4>
               </div>
               <div class="card-body">
                 <h1 class="card-title pricing-card-title"><span id ="wind_speed2"></span><small class="text-body-secondary fw-light"> km/h</small></h1>
@@ -108,16 +112,15 @@
                   <li>Sunrise Time is <span id ="sunrise">1691972371</span></li>
                   <li>Sunset Time is <span id ="sunset">1692019953</span></li>
                 </ul>
-                <!-- <button type="button" class="w-100 btn btn-lg btn-primary">Contact us</button> -->
               </div>
             </div>
           </div>
         </div>
     
-        <h2 class="display-6 text-center mb-4">Weather of other common places</h2>
+        <h2 class="display-6 text-center mb-4">🌍 Weather of other cities <small class="text-muted">(Click any row!)</small></h2>
     
         <div class="table-responsive">
-          <table id="weatherTable" class="table text-center">
+          <table id="weatherTable" class="table text-center table-hover">
             <thead>
               <tr>
                 <th scope="col" style="width: 15%;">City</th>
@@ -141,6 +144,6 @@
       </main></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-    <script src="script.js"></script>
+    <script src="demo-script.js"></script>
 </body>
 </html>
