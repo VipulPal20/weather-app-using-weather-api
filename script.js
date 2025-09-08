@@ -247,16 +247,20 @@ const cities = ["Delhi", "Shanghai", "New York", "Tokyo", "London", "Paris"];
                     tableRow.innerHTML = `
                         <td><strong>${city}</strong></td>
                         <td>${response.cloud_pct || 'N/A'}%</td>
-                        <td>${response.feels_like || 'N/A'}°C</td>
+                        <td>${formatTemperatureFromValue(response.feels_like)}</td>
                         <td>${response.humidity || 'N/A'}%</td>
-                        <td>${response.max_temp || 'N/A'}°C</td>
-                        <td>${response.min_temp || 'N/A'}°C</td>
+                        <td>${formatTemperatureFromValue(response.max_temp)}</td>
+                        <td>${formatTemperatureFromValue(response.min_temp)}</td>
                         <td>${response.sunrise ? formatTime(response.sunrise) : 'N/A'}</td>
                         <td>${response.sunset ? formatTime(response.sunset) : 'N/A'}</td>
-                        <td>${response.temp || 'N/A'}°C</td>
+                        <td>${formatTemperatureFromValue(response.temp)}</td>
                         <td>${response.wind_degrees || 'N/A'}°</td>
                         <td>${response.wind_speed || 'N/A'} km/h</td>
                     `;
+                    
+                    // Store data for unit conversion
+                    tableRow.dataset.city = city;
+                    tableRow.dataset.weatherData = JSON.stringify(response);
                     
                     // Add click event to row
                     tableRow.addEventListener('click', () => {
@@ -277,6 +281,34 @@ const cities = ["Delhi", "Shanghai", "New York", "Tokyo", "London", "Paris"];
                     `;
                     weatherTable.appendChild(tableRow);
                 });
+        }
+
+        // Helper function for table temperature formatting
+        const formatTemperatureFromValue = (tempCelsius) => {
+            if (!tempCelsius) return 'N/A';
+            const isFahrenheit = document.getElementById('fahrenheit') && document.getElementById('fahrenheit').checked;
+            if (isFahrenheit) {
+                const tempF = celsiusToFahrenheit(tempCelsius);
+                return `${tempF}°F`;
+            }
+            return `${tempCelsius}°C`;
+        }
+
+        // Function to update table temperatures when unit changes
+        const updateTableTemperatures = () => {
+            const tableRows = document.querySelectorAll('#weatherTable tbody tr');
+            tableRows.forEach(row => {
+                if (row.dataset.weatherData) {
+                    const data = JSON.parse(row.dataset.weatherData);
+                    const cells = row.children;
+                    if (cells.length > 10) {
+                        cells[2].textContent = formatTemperatureFromValue(data.feels_like); // Feels Like
+                        cells[4].textContent = formatTemperatureFromValue(data.max_temp);   // Max Temp
+                        cells[5].textContent = formatTemperatureFromValue(data.min_temp);   // Min Temp
+                        cells[8].textContent = formatTemperatureFromValue(data.temp);       // Temp
+                    }
+                }
+            });
         }
 
         // Fetch and update weather details for predefined cities
